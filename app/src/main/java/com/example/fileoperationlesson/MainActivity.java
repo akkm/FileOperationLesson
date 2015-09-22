@@ -1,17 +1,11 @@
 package com.example.fileoperationlesson;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,13 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     // TODO こちらにinputEditTextの文字列をファイル書き込みするコードを入れます。
 
-                    EditText inputEditText = (EditText) findViewById(R.id.inputEditText);
-                    String text = inputEditText.getText().toString();
-
-                    FileOutputStream outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
-                    outputStream.write(text.getBytes());
-                    outputStream.close();
-
                     Toast.makeText(getApplicationContext(), "ファイルに書き込みました", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "エラーです", Toast.LENGTH_SHORT).show();
@@ -45,18 +32,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.resultButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 try {
                     // TODO こちらにファイルを読み込み、resultTextViewにファイル内の文字列を出すコードを入れます。
-
-                    FileInputStream inputStream = openFileInput(FILE_NAME);
-                    byte[] buffer = new byte[inputStream.available()];
-                    inputStream.read(buffer);
-                    inputStream.close();
-
-                    String text = new String(buffer);
-                    TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                    resultTextView.setText(text);
 
                     Toast.makeText(getApplicationContext(), "ファイルを読み込みました", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
@@ -69,14 +46,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO こちらにファイルを削除するコードを書きます
-
-                boolean result = deleteFile(FILE_NAME);
-
-                if (result) {
-                    Toast.makeText(getApplicationContext(), "削除しました", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "削除できませんでした", Toast.LENGTH_SHORT).show();
-                }
 
             }
         });
