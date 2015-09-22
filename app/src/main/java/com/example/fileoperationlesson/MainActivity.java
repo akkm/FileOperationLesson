@@ -45,8 +45,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                boolean result = false;
                 // TODO こちらにファイルを削除するコードを書きます
 
+                
+
+
+                if (result) {
+                    Toast.makeText(getApplicationContext(), "削除しました", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "削除できませんでした", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
