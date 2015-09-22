@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.inputButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO こちらにinputEditTextの文字列をファイル書き込みするコードを入れます。
-
                 try {
+                    // TODO こちらにinputEditTextの文字列をファイル書き込みするコードを入れます。
+
                     EditText inputEditText = (EditText) findViewById(R.id.inputEditText);
                     String text = inputEditText.getText().toString();
 
@@ -39,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "エラーです", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
         findViewById(R.id.resultButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // TODO こちらにファイルを読み込み、resultTextViewにファイル内の文字列を出すコードを入れます。
 
                 try {
+                    // TODO こちらにファイルを読み込み、resultTextViewにファイル内の文字列を出すコードを入れます。
+
                     FileInputStream inputStream = openFileInput(FILE_NAME);
                     byte[] buffer = new byte[inputStream.available()];
                     inputStream.read(buffer);
