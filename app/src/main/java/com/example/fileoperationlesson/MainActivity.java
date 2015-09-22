@@ -1,6 +1,5 @@
 package com.example.fileoperationlesson;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
                     EditText inputEditText = (EditText) findViewById(R.id.inputEditText);
                     String text = inputEditText.getText().toString();
 
-                    FileOutputStream outputStream = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+                    File file = new File(getCacheDir(), FILE_NAME);
+
+                    FileOutputStream outputStream = new FileOutputStream(file);
                     outputStream.write(text.getBytes());
                     outputStream.close();
 
@@ -49,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     // TODO こちらにファイルを読み込み、resultTextViewにファイル内の文字列を出すコードを入れます。
 
-                    FileInputStream inputStream = openFileInput(FILE_NAME);
+                    File file = new File(getCacheDir(), FILE_NAME);
+
+                    FileInputStream inputStream = new FileInputStream(file);
                     byte[] buffer = new byte[inputStream.available()];
                     inputStream.read(buffer);
                     inputStream.close();
@@ -70,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO こちらにファイルを削除するコードを書きます
 
-                boolean result = deleteFile(FILE_NAME);
+
+                File file = new File(getCacheDir(), FILE_NAME);
+                boolean result = file.delete();
 
                 if (result) {
                     Toast.makeText(getApplicationContext(), "削除しました", Toast.LENGTH_SHORT).show();
